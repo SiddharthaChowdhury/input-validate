@@ -1,0 +1,26 @@
+{
+  "name": "input-validate",
+  "version": "1.0.0",
+  "description": "Useful for validating inputs server side",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SiddharthaChowdhury/input-validate.git"
+  },
+  "keywords": [
+    "input",
+    "input-validate",
+    "input-test",
+    "regex-test",
+    "regex-validation"
+  ],
+  "author": "Siddhartha Chowdhury <siddharthac6@gmail.com> (https://www.linkedin.com/in/siddc6/)",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/SiddharthaChowdhury/input-validate/issues"
+  },
+  "homepage": "https://github.com/SiddharthaChowdhury/input-validate#readme"
+}
