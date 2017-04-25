@@ -2,19 +2,21 @@
 
 Validating inputs server side using RegEx
 
-## Install 
+## INSTALL 
 
 `npm i -S input-validate`
 
-## How to use
-
+## HOW TO USE
   	var TEST = require('input-validate');
   
   	if(TEST.onlyNumber(123)){
-    	console.log("It is a valid number, so add your stuff here")
+      console.log("It is a valid number, so add your stuff here")
   	}
 
-## Quick content
+### Client-side tests: [Codepen](https://codepen.io/Austin4Silvers/pen/ggPMoM?editors=1010)
+
+
+## QUICK CONTENT
 	
 	- Alphabets ( with and without white spaces  )
 	- Numbers ( with and without white spaces  )
@@ -60,7 +62,7 @@ Validating inputs server side using RegEx
 
     alphanumericspace: function(input){
       	// returns false if string contains anything other than ALPHABETS or NUMBERS with SPACES
-    },
+    }
 
 	password: function(input){
 		/*
@@ -70,7 +72,7 @@ Validating inputs server side using RegEx
 		    May contain any of these characters: ._@#$%
 		    Must have atleast 8 characters
 		*/
-	},
+	}
 
 	person_name: function(input){
 		/*
@@ -126,7 +128,7 @@ Validating inputs server side using RegEx
 		*/
 		valid returns TRUE
 		else FALSE
-	},
+	}
 
 	credit_card_number: function(input, cardType){
 	    /* 
@@ -145,9 +147,9 @@ Validating inputs server side using RegEx
 		*/
 		valid returns string
 		else FALSE
-	},
+	}
 
-	CVVorCVC:function(input, cardType){
+	CVVorCVC: function(input, cardType){
 		/* 
 			Test for valid CVV
 			Card types------------
@@ -164,5 +166,4 @@ Validating inputs server side using RegEx
 		*/
 		valid returns TRUE
 		else FALSE
-	},
-
+	}
