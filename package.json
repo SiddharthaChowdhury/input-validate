@@ -1,6 +1,6 @@
 {
   "name": "input-validate",
-  "version": "1.0.1",
+  "version": "1.0.3",
   "description": "Useful for validating inputs server side",
   "main": "index.js",
   "scripts": {
