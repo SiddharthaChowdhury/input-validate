@@ -43,20 +43,19 @@ module.exports = {
     /* 
         Must contain atleast 1 alphabet
         May contain alphabets and numbers 
-        May contain special symbols such as ._-
+        May contain special symbols such as .,#/_-
         May contain blank spaces
     */
-        return /^(?=.*[A-Za-z])[A-Za-z0-9 .,#_-]{3,50}$/.test(sample);
+        return /^(?=.*[A-Za-z])[A-Za-z0-9 .,#/_-]{3,50}$/.test(sample);
     },
 
-    state: function(sample) {
+    city_state_country: function(sample) {
     /* 
         Must contain atleast 1 alphabet
         Must not contain numbers 
-        May contain special symbols such as ._-
         May contain blank spaces
     */
-         return /^(?=.*[A-Za-z])[A-Za-z ._-]{3,50}$/.test(sample);
+        return /^(?=.*[A-Za-z])[A-Za-z ]{3,50}$/.test(sample);
     },
 
     acct_number: function(sample) {
@@ -142,5 +141,30 @@ module.exports = {
                 return true;
         }
         return false;
+    },
+
+    // Takes only alphabets and spaces
+    alphabets_spaces: function(sample){
+        /* 
+          Must contain atleast 1 alphabet
+          Must not contain numbers or special symbols
+          May contain blank spaces
+        */
+         return /^(?=.*[A-Za-z])[A-Za-z ]{1,}$/.test(sample);
+    },
+
+    // Takes only numbers and spaces
+    number_spaces: function(sample){
+        /* 
+          Must contain atleast 1 number
+          Must not contain alphabets or symbols
+          May contain blank spaces
+        */
+         return /^(?=.*[0-9])[0-9 ]{1,}$/.test(sample);
+    },
+
+    alphanumericspace: function(sample){
+      // returns false if string contains anything other than alphabets or numbers or spaces
+        return /^([a-zA-Z0-9\s]+)$/.test(sample);
     },
 };
