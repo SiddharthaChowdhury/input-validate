@@ -8,15 +8,24 @@ Validating inputs server side using RegEx
 
 ## How to use
 
-      	var TEST = require('input-validate');
-      
-      	if(TEST.onlyNumber(123)){
-        	console.log("It is a valid number, so add your stuff here")
-      	}
+  	var TEST = require('input-validate');
+  
+  	if(TEST.onlyNumber(123)){
+    	console.log("It is a valid number, so add your stuff here")
+  	}
 
+## Quick content
+	
+	- Alphabets ( with and without white spaces  )
+	- Numbers ( with and without white spaces  )
+	- Alphanumeric ( with and without white spaces  ) 
+	- Person details
+	- Email
+	- Address components ( street, city, state, country )
+	- Credit card
+	- Many more
 
-
-## TESTS
+## TESTS in details
 
 	onlyNumber: function(input){
 		// return true if input is NUMBER (only) 	
