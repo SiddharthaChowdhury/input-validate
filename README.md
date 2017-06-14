@@ -10,7 +10,7 @@ Validating inputs server side using RegEx. Create custom validation rules to mee
   	var TEST = require('input-validate');
   
   	if(TEST.onlyNumber(123)){
-      console.log("It is a valid number, so add your stuff here")
+      	console.log("It is a valid number.")
   	}
 
 ### Client-side tests: [Codepen](https://codepen.io/Austin4Silvers/pen/ggPMoM?editors=1010)
@@ -30,9 +30,9 @@ Validating inputs server side using RegEx. Create custom validation rules to mee
 
 ## CUSTOM rule creation
 
-   custom: function(input, allow_rules, flag){
-
-   }
+	   custom: function(input, allow_rules, flag){
+	   		//  Implementation
+	   }
 
 ### Parameters of custom validation
 
@@ -60,13 +60,21 @@ The second parameter of the function `custom("",allow_rules)` is used to create 
         } 
     }
 
-    // Pass the above configured rule as following
-    var str = "sample @123";
-    var result = custom(str, {spaces: false, symbols: "$#@"});
-    // Value of result is false as {spaces: false .. } and there is a space in str
+### Custom rule Example: 
+    
+    var TEST 	= require('input-validate');
+    var str 	= "sample @123";
+    var rule 	= {spaces: false, symbols: "$#@"}
+    var result 	= TEST.custom(str, rule); // False 
+    
+    Whats happening here is
+    1. We want to validate the string- "sample @123"
+    2. Create a rule. The string should not contain in blank_space or any special symbol other than "$#@" these.
+    3. Execute the TEST. Validate "str" against the "rule".
+    4. Value of "result" is false as {spaces: false .. } and there is a space in str
 
 
-## TESTS in details
+## OTHER TESTS (Quick use)
 
 	onlyNumber: function(input){
 		// return true if input is NUMBER (only) 	
