@@ -1,6 +1,7 @@
 # input-validate
 
 Validating inputs server side using RegEx
+Create custion vallidation rules also there are precreated regex valivators for quick use. Read below to know more.
 
 ## INSTALL 
 
@@ -18,6 +19,7 @@ Validating inputs server side using RegEx
 
 ## QUICK CONTENT
 	
+	- Custom validation [ Check below to create custom rules ]
 	- Alphabets ( with and without white spaces  )
 	- Numbers ( with and without white spaces  )
 	- Alphanumeric ( with and without white spaces  ) 
@@ -26,6 +28,44 @@ Validating inputs server side using RegEx
 	- Address components ( street, city, state, country )
 	- Credit card
 	- Many more
+
+## CUSTOM rule creation
+
+   custom: function(input, allow_rules, flag){
+
+   }
+
+### Parameters of custom validation
+
+	1. `input`: (Required) `String`. Is the input to test against the `allow_rules` 
+	2. `allow_rules`: (Optional) `Object`. Validation configuration
+	3. `flag`: (Optional) `String`. This method uses [RegExp](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/RegExp) to validate inputs. This parameter is the flag of the function. : new RegExp('-----', `flag`)
+
+### Create CUSTOM Rule
+   
+The second parameter of the function `custom("",allow_rules)` is used to create custom validation.
+	
+	allow_rules = { 
+        alphabets: {            // Pass Boolean false if alphabets are not allowed
+           uppercase: Boolean, 	// default true 
+           lowercase: Boolean  	// default true
+        },
+        numbers: {              // Pass Boolean false if numbers are not allowed
+           range: String       	// default "0-9"
+        },
+        spaces: Boolean,   		// default true
+        symbols: String, 		// default "", exapmle: '-_,' 
+        str_length: {           // Object 
+            min: Number,  		// default 1
+            max: Number  		// default ""
+        } 
+    }
+
+    // Pass the above configured rule as following
+    var str = "sample @123";
+    var result = custom(str, {spaces: false, symbols: "$#@"});
+    // Value of result is false as {spaces: false .. } and there is a space in str
+
 
 ## TESTS in details
 

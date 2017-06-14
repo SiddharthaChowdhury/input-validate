@@ -167,4 +167,79 @@ module.exports = {
       // returns false if string contains anything other than alphabets or numbers or spaces
         return /^([a-zA-Z0-9\s]+)$/.test(sample);
     },
+
+    custom: function(sample, flags = {}, regexFlag = ""){
+        /*
+        allows = { // Optional
+            alphabets: {
+               uppercase: true, // default
+               lowercase: true  // default
+            },
+            numbers: {
+               range: '0-9' // default
+            },
+            spaces: true,    // default
+            symbols: '-_,.', // default, exapmle: '-_,' 
+            str_length: {
+                min: 1,  // default
+                max: ""  // default
+            } 
+        }
+
+        regexFlag: Uses validation uses RegExp. this is the flag of the function: new RegExp('pattern', regexFlag); // Optional
+        */
+        var alpha = "", //"a-zA-Z",
+            nums = "", //"0-9",
+            symbols = "", //"-_,.",
+            spaces = "",
+            minlngth = 1,
+            maxlngth = "";
+        if(flags.str_length){
+           if(flags.str_length.min)
+              minlngth = parseInt(flags.str_length.min);
+           if(flags.str_length.max)
+              maxlngth = parseInt(flags.str_length.max);
+        }
+      
+        if(flags.alphabets){
+           if(!flags.alphabets.lowercase)
+              alpha += '';
+           else
+              alpha += 'a-z';
+           if(!flags.alphabets.uppercase)
+              alpha += '';
+           else
+              alpha += 'A-Z'
+        }else{
+            if(flags.alphabets == false)
+                alpha = '';
+            else
+                alpha = 'a-zA-Z'
+        }
+      
+        if( flags.numbers ){
+            if(flags.numbers.range)
+              nums = flags.numbers.range
+        }else{
+            if(flags.numbers === false)
+                nums = "";
+            else
+                nums = '0-9';
+        }
+      
+        if( flags.spaces === undefined || flags.spaces == true ){
+           spaces = " ";
+        }else{
+           spaces = "";
+        }
+      
+        if(flags.symbols)
+          symbols = flags.symbols.toString();
+        else
+          symbols = ""
+
+        var str = '^['+alpha+nums+spaces+symbols+']{'+minlngth+','+maxlngth+'}$'
+        var pattern = new RegExp(str,regexFlag)
+        return pattern.test(sample);
+    }
 };
