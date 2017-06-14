@@ -1,7 +1,6 @@
 # input-validate
 
-Validating inputs server side using RegEx
-Create custion vallidation rules also there are precreated regex valivators for quick use. Read below to know more.
+Validating inputs server side using RegEx. Create custom validation rules to meet your needs. Also there are pre-defined regex validators for quick use. Read below to know more.
 
 ## INSTALL 
 
