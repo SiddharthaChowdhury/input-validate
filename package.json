@@ -1,6 +1,6 @@
 {
   "name": "input-validate",
-  "version": "1.1.3",
+  "version": "1.1.4",
   "description": "Easy and efficient serverside validation plugin. Create CUSTOM validation rules to meet your requirements. Also there are pre-defined regex validators for quick use. ",
   "main": "index.js",
   "scripts": {

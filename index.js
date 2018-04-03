@@ -1,17 +1,17 @@
 module.exports = {
     onlyNumber: function(sample){
         // returns false if input is not a number 
-        return /^([0-9]+)$/.test(sample);
+        return (sample) ? /^([0-9]+)$/.test(sample) : false;
     },
 
     onlyAlphabets: function(sample){
       // returns false if input is not a string of alphabets
-        return /^([a-z]+)$/.test(sample);
+        return (sample) ? /^([a-z]+)$/.test(sample) : false;
     },
 
     alphanumeric: function(sample){
       // returns false if string contains anything other than alphabets or numbers
-        return /^([a-zA-Z0-9]+)$/.test(sample);
+        return (sample) ? /^([a-zA-Z0-9]+)$/.test(sample) : false;
     },
 
     password: function(sample){
@@ -22,7 +22,7 @@ module.exports = {
             May contain any of these characters: ._@#$%
             Must have atleast 8 characters
     */
-        return /^(?=.*\d)(?=.*[A-Za-z])[0-9A-Za-z ._@#$%]{8,}$/.test(sample);
+        return (sample) ? /^(?=.*\d)(?=.*[A-Za-z])[0-9A-Za-z ._@#$%]{8,}$/.test(sample) : false;
     },
 
     person_name: function(sample){
@@ -31,12 +31,12 @@ module.exports = {
         May contain blank spaces
         May contain "." (Dot) symbol only
     */
-        return /^([a-zA-Z.\s]+){3,}$/.test(sample.trim());
+        return (sample) ? /^([a-zA-Z.\s]+){3,}$/.test(sample.trim()) : false;
     },
 
     email: function(sample){
     /*  Pursuit of a valid email address  */
-        return /^[A-Za-z0-9._-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4}$/.test(sample);
+        return (sample) ? /^[A-Za-z0-9._-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4}$/.test(sample) : false;
     },
 
     street: function(sample){
@@ -46,7 +46,7 @@ module.exports = {
         May contain special symbols such as .,#/_-
         May contain blank spaces
     */
-        return /^(?=.*[A-Za-z])[A-Za-z0-9 .,#/_-]{3,50}$/.test(sample);
+        return (sample) ? /^(?=.*[A-Za-z])[A-Za-z0-9 .,#/_-]{3,50}$/.test(sample) : false;
     },
 
     city_state_country: function(sample) {
@@ -55,7 +55,7 @@ module.exports = {
         Must not contain numbers 
         May contain blank spaces
     */
-        return /^(?=.*[A-Za-z])[A-Za-z ]{3,50}$/.test(sample);
+        return (sample) ? /^(?=.*[A-Za-z])[A-Za-z ]{3,50}$/.test(sample) : false;
     },
 
     acct_number: function(sample) {
@@ -64,7 +64,7 @@ module.exports = {
         Must contain atleast 1 number
         Must not contain any special symbol or blank space
     */
-        return /^(?=.*\d)(?=.*[A-Za-z])[0-9A-Za-z]{9,18}$/.test(sample);
+        return (sample) ? /^(?=.*\d)(?=.*[A-Za-z])[0-9A-Za-z]{9,18}$/.test(sample) : false;
     },
 
     credit_card_type: function(sample){
@@ -150,7 +150,7 @@ module.exports = {
           Must not contain numbers or special symbols
           May contain blank spaces
         */
-         return /^(?=.*[A-Za-z])[A-Za-z ]{1,}$/.test(sample);
+         return (sample) ? /^(?=.*[A-Za-z])[A-Za-z ]{1,}$/.test(sample) : false;
     },
 
     // Takes only numbers and spaces
@@ -160,12 +160,12 @@ module.exports = {
           Must not contain alphabets or symbols
           May contain blank spaces
         */
-         return /^(?=.*[0-9])[0-9 ]{1,}$/.test(sample);
+         return (sample) ? /^(?=.*[0-9])[0-9 ]{1,}$/.test(sample) : false;
     },
 
     alphanumericspace: function(sample){
       // returns false if string contains anything other than alphabets or numbers or spaces
-        return /^([a-zA-Z0-9\s]+)$/.test(sample);
+        return (sample) ? /^([a-zA-Z0-9\s]+)$/.test(sample) : false;
     },
 
     custom: function(sample, flags = {}, regexFlag = ""){
