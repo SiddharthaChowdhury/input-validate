@@ -1,7 +1,14 @@
 module.exports = {
-    onlyNumber: function(sample){
-        // returns false if input is not a number 
-        return (sample) ? /^([0-9]+)$/.test(sample) : false;
+    onlyNumber: function(sample, type = true){
+        if(type && typeof sample === "number"){
+            return (sample) ? /^([0-9]+)$/.test(sample) : false;
+        }
+        if(type && typeof sample !== "number"){
+            return false;
+        }
+        if(!type){
+            return (sample) ? /^([0-9]+)$/.test(sample) : false;
+        }
     },
 
     onlyAlphabets: function(sample){

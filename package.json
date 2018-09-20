@@ -4,7 +4,7 @@
   "description": "Easy and efficient serverside validation plugin. Create CUSTOM validation rules to meet your requirements. Also there are pre-defined regex validators for quick use. ",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha tests/*.test.js"
   },
   "repository": {
     "type": "git",
@@ -22,5 +22,9 @@
   "bugs": {
     "url": "https://github.com/SiddharthaChowdhury/input-validate/issues"
   },
-  "homepage": "https://github.com/SiddharthaChowdhury/input-validate#readme"
+  "homepage": "https://github.com/SiddharthaChowdhury/input-validate#readme",
+  "devDependencies": {
+    "chai": "^4.1.2",
+    "mocha": "^5.2.0"
+  }
 }
