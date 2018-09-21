@@ -1,6 +1,6 @@
 # input-validate
 
-Validating inputs server side using RegEx. Create custom validation rules to meet your needs. Also there are pre-defined regex validators for quick use. Read below to know more.
+Just when you are not using any type checking library/framework. There is are a couple of predefined day to day check-functions and a CUSTOM input test function to meet any of your random needs!
 
 ## INSTALL 
 
@@ -9,11 +9,11 @@ Validating inputs server side using RegEx. Create custom validation rules to mee
 ## HOW TO USE
   	var TEST = require('input-validate');
   
-  	if(TEST.onlyNumber(123)){
+  	if(TEST.strictNumbers(123)){
       	console.log("It is a valid number.")
   	}
 
-### Client-side tests: [Codepen](https://codepen.io/Austin4Silvers/pen/ggPMoM?editors=1010)
+### [Codepen](https://codepen.io/Austin4Silvers/pen/ggPMoM?editors=1010)
 
 
 ## QUICK CONTENT
@@ -76,16 +76,28 @@ The second parameter of the function `custom("",allow_rules)` is used to create 
 
 ## OTHER TESTS (Quick use)
 
-	onlyNumber: function(input){
-		// return true if input is NUMBER (only) 	
+	**isNumber** : function (input) {
+		// (typeof sample === "number") ? true : false;
+	} 
+
+	**strictNumbers**: function (input, [true|false]) {
+		/*
+			parameter 1: input
+			parameter 2: (optional checkType), by default `TRUE` 
+			return true if input is valid NUMBER 
+		*/
 	}
 
-	onlyAlphabets: function(input){
+	**isString**: function (input) {
+		// (typeof sample === "string") ? true : false;
+	}
+
+	**strictAlphabets**: function (input) {
 		// return true if input is ALPHABET/s (only)
 	}
 	
 
-	alphanumeric: function(input){
+	**alphanumeric**: function(input){
 		// returns false if string contains anything other than ALPHABETS OR NUMBERS
 	}
 
@@ -111,7 +123,7 @@ The second parameter of the function `custom("",allow_rules)` is used to create 
       	// returns false if string contains anything other than ALPHABETS or NUMBERS with SPACES
     }
 
-	password: function(input){
+	quickPassword: function(input){
 		/*
 		    May contain letter and numbers
 		    May contain blank space

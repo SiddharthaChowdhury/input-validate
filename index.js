@@ -1,27 +1,40 @@
 module.exports = {
-    onlyNumber: function(sample, type = true){
-        if(type && typeof sample === "number"){
+    isNumber: function(sample) {
+        (typeof sample === "number") ? true : false;
+    },
+
+    strictNumbers: function(sample, _type = true){
+        if(_type && typeof sample === "number"){
+            if (typeof sample === undefined) return false;
             return (sample) ? /^([0-9]+)$/.test(sample) : false;
         }
-        if(type && typeof sample !== "number"){
+        if(_type && typeof sample !== "number"){
             return false;
         }
-        if(!type){
+        if(!_type){
+            if (typeof sample === undefined) return false;
             return (sample) ? /^([0-9]+)$/.test(sample) : false;
+        }   
+    },
+
+    isString: function(sample) {
+        (typeof sample === "string") ? true : false;
+    },
+
+    strictAlphabets: function(sample){
+        if (typeof sample !== "string") return false;
+        return (sample) ? /^([a-zA-Z]+)$/.test(sample) : false;     
+    },
+
+    alphanumeric: function(sample, strict = false){
+        if (typeof sample === undefined) return false;
+        if(strict){
+            return sample ? /^(?=.*\d)(?=.*[A-Za-z])[0-9A-Za-z]$/.test(sample) : false;
         }
-    },
-
-    onlyAlphabets: function(sample){
-      // returns false if input is not a string of alphabets
-        return (sample) ? /^([a-z]+)$/.test(sample) : false;
-    },
-
-    alphanumeric: function(sample){
-      // returns false if string contains anything other than alphabets or numbers
         return (sample) ? /^([a-zA-Z0-9]+)$/.test(sample) : false;
     },
 
-    password: function(sample){
+    quickPassword: function(sample){
     /*
         May contain letter and numbers
         May contain blank space
@@ -29,6 +42,7 @@ module.exports = {
             May contain any of these characters: ._@#$%
             Must have atleast 8 characters
     */
+        if (typeof sample === undefined) return false;
         return (sample) ? /^(?=.*\d)(?=.*[A-Za-z])[0-9A-Za-z ._@#$%]{8,}$/.test(sample) : false;
     },
 
