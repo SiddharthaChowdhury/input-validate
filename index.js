@@ -38,9 +38,9 @@ module.exports = {
     /*
         May contain letter and numbers
         May contain blank space
-            Must contain at least 1 number and 1 letter
-            May contain any of these characters: ._@#$%
-            Must have atleast 8 characters
+        Must contain at least 1 number and 1 letter
+        May contain any of these characters: ._@#$%
+        Must have atleast 8 characters
     */
         if (typeof sample === undefined) return false;
         return (sample) ? /^(?=.*\d)(?=.*[A-Za-z])[0-9A-Za-z ._@#$%]{8,}$/.test(sample) : false;

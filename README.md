@@ -2,6 +2,8 @@
 
 A bunch of pure functions with regular expressions, for input validation purpose (when you are not using any type checking library/framework). A couple of predefined check-functions and a - flexible CUSTOM test function to meet any other random needs!
 
+<!-- ### [Codepen](https://codepen.io/Austin4Silvers/pen/ggPMoM?editors=1010) -->
+
 ## INSTALL 
 
 `npm i -S input-validate`
@@ -13,15 +15,14 @@ A bunch of pure functions with regular expressions, for input validation purpose
       	console.log("It is a valid number.")
   	}
 
-### [Codepen](https://codepen.io/Austin4Silvers/pen/ggPMoM?editors=1010)
 
-
-## Table of CONTENT
+## Use table of CONTENT to navigate through the page
 - [isNumber( )](#isNumber)
 - [strictNumbers( )](#strictNumbers)
 - [isString( )](#isString)
-- [strictAlphabets()](#strictAlphabets)
+- [strictAlphabets( )](#strictAlphabets)
 - [alphanumeric( )](#alphanumeric)
+- [quickPassword( )](#quickPassword)
 
 ## CUSTOM rule creation
 
@@ -72,7 +73,6 @@ The second parameter of the function `custom("",allow_rules)` is used to create 
 ## OTHER TESTS (Quick use)
 
 <a name="isNumber"></a>**isNumber(input)** checks if input is a valid number uses `typeof`
-
 
 	// --- usage ---
 	if ( TEST.isNumber(123) ) {
@@ -148,6 +148,27 @@ The second parameter of the function `custom("",allow_rules)` is used to create 
     √ should return FALSE alphanumeric(123, strict = true)
     √ should return FALSE alphanumeric('123 abc')
     √ should return FALSE alphanumeric('123@abc')
+
+
+<a name="quickPassword"/>quickPassword(input): A quick password check with some ground rules:
+
+1. Must contain at least 1 number and 1 letter
+2. Must have atleast 8 characters
+3. May contain blank space
+4. May contain any of these characters: ._@#$%
+
+	--- usage ---
+	if ( TEST.quickPassword("123abc_XYZ") ) {
+      	console.log("Valid password")
+  	}
+	--- tests ---
+	√ should return FALSE quickPassword('1234567')
+    √ should return FALSE quickPassword('123456789')
+    √ should return FALSE quickPassword('abcDEFghij')
+    √ should return FALSE quickPassword('12345 6789')
+    √ should return TRUE quickPassword('12345 A@ 6789')
+    √ should return TRUE quickPassword('123abc_XYZ')
+    √ should return TRUE quickPassword('1234abcXYZ')
 
 
 some other stuff (refactor - WIP)
