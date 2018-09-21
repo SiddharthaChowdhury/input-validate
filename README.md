@@ -16,7 +16,8 @@ A bunch of pure functions with regular expressions, for input validation purpose
   	}
 
 <a name="toc"/>
-## Use Table of CONTENT to navigate through the page
+
+## Use Table of CONTENT to navigate through the page 
 - [isNumber( )](#isNumber)
 - [strictNumbers( )](#strictNumbers)
 - [isString( )](#isString)
@@ -73,7 +74,7 @@ The second parameter of the function `custom("",allow_rules)` is used to create 
     4. Value of "result" is false as {spaces: false .. } and there is a space in str
 
 
-## OTHER TESTS (Quick use)
+## QUICK TESTS
 
 <a name="isNumber"></a>**isNumber(input)** checks if input is a valid number uses `typeof` [{Table of Content}](#toc)
 
