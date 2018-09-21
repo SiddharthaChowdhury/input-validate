@@ -47,8 +47,8 @@ module.exports = {
     },
 
     isEmail: function(sample){
-    /*  Pursuit of a valid email address  */
-        if (typeof sample === undefined) return false;
+        /*  Pursuit of a valid email address  */
+        if (typeof sample === undefined || sample.length < 6) return false;
         return (sample) ? /^[A-Za-z0-9._-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4}$/.test(sample) : false;
     },
 
@@ -56,8 +56,17 @@ module.exports = {
     /*
         Must be atleast 3 characters
         May contain blank spaces
-        May contain "." (Dot) symbol only
-    */  if (typeof sample === undefined) return false;
+        May contain "." or "," symbols only
+    */  
+        if (typeof sample === undefined || sample.length < 3) return false;
+        const salutations = ["mr", "master", "sir", "dr", "miss", "ms", "mrs", "prof", "rev", "capt", "maj", "dj", "pvt" ];
+        var fullName = sample.replace(",", ".").split('.');
+
+        if(fullName.length > 1){
+            if(salutations.indexOf(fullName[0].toLowerCase()) == -1)
+                return false;
+            sample = fullName[1].trim();
+        }
         return (sample) ? /^([a-zA-Z.\s]+){3,}$/.test(sample.trim()) : false;
     },
 

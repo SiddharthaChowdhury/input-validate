@@ -23,7 +23,8 @@ A bunch of pure functions with regular expressions, for input validation purpose
 - [strictAlphabets( )](#strictAlphabets)
 - [alphanumeric( )](#alphanumeric)
 - [quickPassword( )](#quickPassword)
-- [isEmail( )][#isEmail]
+- [isEmail( )](#isEmail)
+- [isPersonName( )](#isPersonName)
 
 ## CUSTOM rule creation
 
@@ -191,6 +192,23 @@ The second parameter of the function `custom("",allow_rules)` is used to create 
     √ should return FALSE isEmail(' valid@email.addrress')
 
 
+<a name="isPersonName"/> **isPersonName(input)** Checks for a possible valid full name of a person including salutation checks like ["Mr", "Master", "Sir", "Dr", "Miss", "Ms", "Mrs", "Prof", "Rev", "Capt", "Maj", "Dj", "Pvt" ]
+
+	--- usage ---
+	if ( TEST.isPersonName("John Doe") ) {
+      	console.log("Valid person name")
+  	}
+
+	--- tests ---
+	√ should return FALSE isPersonName('Do')
+    √ should return TRUE isPersonName('Doe')
+    √ should return TRUE isPersonName('John Doe')
+    √ should return TRUE isPersonName('Mr. John Doe')
+    √ should return TRUE isPersonName('Mrs, Johane Doe')
+    √ should return FALSE isPersonName('Etc. John')
+    √ should return FALSE isPersonName('Mr. J')
+    √ should return FALSE isPersonName('$Dollar Sign')
+    √ should return FALSE isPersonName('John_Doe')
 
 some other stuff (refactor - WIP)
 
@@ -216,15 +234,6 @@ some other stuff (refactor - WIP)
       	// returns false if string contains anything other than ALPHABETS or NUMBERS with SPACES
     }
 
-
-	person_name: function(input){
-		/*
-		    Must be atleast 3 characters
-		    May contain blank spaces
-		    May contain "." (Dot) symbol only
-		*/
-	}
-
 	street: function(input){
 		/* 
 		    Must contain atleast 1 alphabet
@@ -240,14 +249,6 @@ some other stuff (refactor - WIP)
 	        Must not contain numbers or special symbols
 	        May contain blank spaces
 	    */
-	}
-
-	acct_number: function(input) {
-		/* 
-		    Must contain atleast 1 alphabet
-		    Must contain atleast 1 number
-		    Must not contain any special symbol or blank space
-		*/
 	}
 
 	credit_card_type: function(input){
