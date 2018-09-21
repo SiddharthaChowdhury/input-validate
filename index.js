@@ -46,19 +46,20 @@ module.exports = {
         return (sample) ? /^(?=.*\d)(?=.*[A-Za-z])[0-9A-Za-z ._@#$%]{8,}$/.test(sample) : false;
     },
 
-    // person_name: function(sample){
-    // /*
-    //     Must be atleast 3 characters
-    //     May contain blank spaces
-    //     May contain "." (Dot) symbol only
-    // */
-    //     return (sample) ? /^([a-zA-Z.\s]+){3,}$/.test(sample.trim()) : false;
-    // },
+    isEmail: function(sample){
+    /*  Pursuit of a valid email address  */
+        if (typeof sample === undefined) return false;
+        return (sample) ? /^[A-Za-z0-9._-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4}$/.test(sample) : false;
+    },
 
-    // email: function(sample){
-    // /*  Pursuit of a valid email address  */
-    //     return (sample) ? /^[A-Za-z0-9._-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4}$/.test(sample) : false;
-    // },
+    isPersonName: function(sample){
+    /*
+        Must be atleast 3 characters
+        May contain blank spaces
+        May contain "." (Dot) symbol only
+    */  if (typeof sample === undefined) return false;
+        return (sample) ? /^([a-zA-Z.\s]+){3,}$/.test(sample.trim()) : false;
+    },
 
     // street: function(sample){
     // /* 

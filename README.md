@@ -23,12 +23,13 @@ A bunch of pure functions with regular expressions, for input validation purpose
 - [strictAlphabets( )](#strictAlphabets)
 - [alphanumeric( )](#alphanumeric)
 - [quickPassword( )](#quickPassword)
+- [isEmail( )][#isEmail]
 
 ## CUSTOM rule creation
 
-	   custom: function(input, allow_rules, flag){
-	   		//  Implementation
-	   }
+	custom: function(input, allow_rules, flag){
+		//Implementation
+	}
 
 ### Parameters of custom validation
 
@@ -161,6 +162,7 @@ The second parameter of the function `custom("",allow_rules)` is used to create 
 	if ( TEST.quickPassword("123abc_XYZ") ) {
       	console.log("Valid password")
   	}
+
 	--- tests ---
 	√ should return FALSE quickPassword('1234567')
     √ should return FALSE quickPassword('123456789')
@@ -169,6 +171,25 @@ The second parameter of the function `custom("",allow_rules)` is used to create 
     √ should return TRUE quickPassword('12345 A@ 6789')
     √ should return TRUE quickPassword('123abc_XYZ')
     √ should return TRUE quickPassword('1234abcXYZ')
+
+
+<a name="isEmail"/> **isEmail(input)** Checks for valid email address 
+
+	--- usage ---
+	if ( TEST.isEmail("valid@email.addr") ) {
+      	console.log("Valid email address")
+  	}
+
+	--- tests ---
+	√ should return TRUE isEmail('valid@email.addr')
+    √ should return TRUE isEmail('VALID@EMAIL.ADDR')
+    √ should return TRUE isEmail('valid@email.ad.dr')
+    √ should return TRUE isEmail('this-is_va.lid@email.ad.dr')
+    √ should return FALSE isEmail('val id@email.ad.dr')
+    √ should return FALSE isEmail('val/id@email.ad.dr')
+    √ should return FALSE isEmail(' valid@email.ad.dr')
+    √ should return FALSE isEmail(' valid@email.addrress')
+
 
 
 some other stuff (refactor - WIP)
@@ -195,15 +216,6 @@ some other stuff (refactor - WIP)
       	// returns false if string contains anything other than ALPHABETS or NUMBERS with SPACES
     }
 
-	quickPassword: function(input){
-		/*
-		    May contain letter and numbers
-		    May contain blank space
-		    Must contain at least 1 number and 1 letter
-		    May contain any of these characters: ._@#$%
-		    Must have atleast 8 characters
-		*/
-	}
 
 	person_name: function(input){
 		/*
@@ -211,10 +223,6 @@ some other stuff (refactor - WIP)
 		    May contain blank spaces
 		    May contain "." (Dot) symbol only
 		*/
-	}
-
-	email: function(input){
-		//  The pursuit of a valid email address
 	}
 
 	street: function(input){
