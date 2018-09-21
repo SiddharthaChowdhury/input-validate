@@ -17,18 +17,11 @@ A bunch of pure functions with regular expressions, for input validation purpose
 
 
 ## Table of CONTENT
-- [isNumber ()](#isNumber)
-- [strictNumbers ()](#strictNumbers)
-- [isString ()](#isString)
-<!-- - Custom validation [ Check below to create custom rules ]
-- Alphabets ( with and without white spaces  )
-- Numbers ( with and without white spaces  )
-- Alphanumeric ( with and without white spaces  ) 
-- Person details
-- Email
-- Address components ( street, city, state, country )
-- Credit card
-- Many more -->
+- [isNumber( )](#isNumber)
+- [strictNumbers( )](#strictNumbers)
+- [isString( )](#isString)
+- [strictAlphabets()](#strictAlphabets)
+- [alphanumeric( )](#alphanumeric)
 
 ## CUSTOM rule creation
 
@@ -113,21 +106,51 @@ The second parameter of the function `custom("",allow_rules)` is used to create 
   	}
 
 
+<a name="strictAlphabets"/>**strictAlphabets(input) checks if input contains only alphabets
 
-some other stuff (WIP)
+	// --- usage ---
+	if ( TEST.strictAlphabets("abc") ) {
+      	console.log("Contains only alphabets.")
+  	}
 
-	**strictAlphabets**: function (input) {
-		// return true if input is ALPHABET/s (only)
+	// --- tests ---
+	√ should return TRUE - strictAlphabets('abc')
+    √ should return TRUE - strictAlphabets('abcABC')
+    √ should return FALSE - strictAlphabets(123)
+    √ should return FALSE - strictAlphabets('1234')
+    √ should return FALSE - strictAlphabets(`123`)
+    √ should return FALSE - strictAlphabets('123abc')
+    √ should return FALSE - strictAlphabets()
+    √ should return FALSE - strictAlphabets(null)
+
+
+<a name="alphanumeric"/> This function takes 2 arguments. first one is input and second one is "strictMode" as boolean. By default `strictMode` = `false`, is that case the validator returns true if the input contains either alphabets or number or both. But when you make the `strictMode` = `true`, it checks for -the input must contain alphabets and numbers. Note -no space or symbols are tolarated.
+
+	--- usage ---
+	if ( TEST.alphanumeric("abc") ) {
+      	console.log("Valid alphanumeric in strictMode = default|false.")
+  	}
+
+	if ( TEST.alphanumeric("abc", true) ) {
+  	} else {
+		  console.log("InValid alphanumeric in strictMode = true.")
 	}
-	
 
-	**alphanumeric**: function(input, mode[true|false]){
-		/*
-			parameter 1: input
-			parameter 2: (optional strictMode), by default `false`;
-			return boolean
-		*/
-	}
+	if ( TEST.alphanumeric("abc123") ) {
+      	console.log("Valid alphanumeric")
+  	}
+
+	--- tests ---
+	√ should return TRUE alphanumeric('abc123ABC')
+    √ should return TRUE alphanumeric('abc')
+    √ should return FALSE alphanumeric('abc', strict = true)
+    √ should return TRUE alphanumeric(123)
+    √ should return FALSE alphanumeric(123, strict = true)
+    √ should return FALSE alphanumeric('123 abc')
+    √ should return FALSE alphanumeric('123@abc')
+
+
+some other stuff (refactor - WIP)
 
     alphabets_spaces: function(input){
     	/* 
