@@ -1,6 +1,6 @@
 # input-validate
 
-A bunch of pure functions with regular expressions, for input validation purpose (when you are not using any type checking library/framework). There is are a couple of predefined day to day check-functions and a - flexible enough CUSTOM test function to meet any other random needs!
+A bunch of pure functions with regular expressions, for input validation purpose (when you are not using any type checking library/framework). A couple of predefined check-functions and a - flexible CUSTOM test function to meet any other random needs!
 
 ## INSTALL 
 
