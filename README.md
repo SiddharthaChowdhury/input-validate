@@ -17,16 +17,16 @@ A bunch of pure functions with regular expressions, for input validation purpose
 
 
 ## Table of CONTENT
-	- [isNumber](#isNumber)
-	<!-- - Custom validation [ Check below to create custom rules ]
-	- Alphabets ( with and without white spaces  )
-	- Numbers ( with and without white spaces  )
-	- Alphanumeric ( with and without white spaces  ) 
-	- Person details
-	- Email
-	- Address components ( street, city, state, country )
-	- Credit card
-	- Many more -->
+- [isNumber](#isNumber)
+<!-- - Custom validation [ Check below to create custom rules ]
+- Alphabets ( with and without white spaces  )
+- Numbers ( with and without white spaces  )
+- Alphanumeric ( with and without white spaces  ) 
+- Person details
+- Email
+- Address components ( street, city, state, country )
+- Credit card
+- Many more -->
 
 ## CUSTOM rule creation
 
