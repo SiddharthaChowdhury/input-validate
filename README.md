@@ -25,6 +25,7 @@ A bunch of pure functions with regular expressions, for input validation purpose
 - [quickPassword( )](#quickPassword)
 - [isEmail( )](#isEmail)
 - [isPersonName( )](#isPersonName)
+- [isCountry()](#isCountry)
 
 ## CUSTOM rule creation
 
@@ -210,7 +211,26 @@ The second parameter of the function `custom("",allow_rules)` is used to create 
     √ should return FALSE isPersonName('$Dollar Sign')
     √ should return FALSE isPersonName('John_Doe')
 
-some other stuff (refactor - WIP)
+
+<a name="isCountry"/> **isCountry(input)** Checks if given input is a valid country name. (Checks trough a list of more than 210 countries)
+
+	--- usage ---
+	if ( TEST.isCountry("India") ) {
+      	console.log("Valid country name")
+  	}
+
+	--- tests ---
+	√ should return TRUE isCountry('Panama')
+    √ should return TRUE isCountry('el salvador')
+    √ should return TRUE isCountry('st lucia')
+    √ should return TRUE isCountry('St. Lucia')
+    √ should return TRUE isCountry('Saint Lucia')
+    √ should return TRUE isCountry('US')
+    √ should return TRUE isCountry('united states')
+
+
+
+### Some other stuff (refactor - WIP)
 
     alphabets_spaces: function(input){
     	/* 

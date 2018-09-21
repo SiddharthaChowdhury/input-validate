@@ -70,6 +70,26 @@ module.exports = {
         return (sample) ? /^([a-zA-Z.\s]+){3,}$/.test(sample.trim()) : false;
     },
 
+    isCountry: function(sample){
+        var countries = ["afghanistan","albania","algeria","andorra","angola","anguilla","antigua; barbuda","argentina","armenia","aruba","australia","austria","azerbaijan","bahamas"
+        ,"bahrain","bangladesh","barbados","belarus","belgium","belize","benin","bermuda","bhutan","bolivia","bosnia; herzegovina","botswana","brazil","british virgin islands"
+        ,"brunei","bulgaria","burkina faso","burundi","cambodia","cameroon","canada","cape verde","cayman islands","chad","chile","china","colombia","congo","cook islands","costa rica"
+        ,"cote d ivoire","croatia","cruise ship","cuba","cyprus","czech republic","denmark","djibouti","dominica","dominican republic","ecuador","egypt","el salvador","equatorial guinea"
+        ,"estonia","ethiopia","falkland islands","faroe islands","fiji","finland","france","french polynesia","french west indies", "west indies","gabon","gambia","georgia","germany","ghana"
+        ,"gibraltar","greece","greenland","grenada","guam","guatemala","guernsey","guinea","guinea bissau","guyana","haiti","honduras","hong kong","hungary","iceland","india"
+        ,"indonesia","iran","iraq","ireland","isle of man","israel","italy","jamaica","japan","jersey","jordan","kazakhstan","kenya","kuwait","kyrgyz republic","laos","latvia"
+        ,"lebanon","lesotho","liberia","libya","liechtenstein","lithuania","luxembourg","macau","macedonia","madagascar","malawi","malaysia","maldives","mali","malta","mauritania"
+        ,"mauritius","mexico","moldova","monaco","mongolia","montenegro","montserrat","morocco","mozambique","namibia","nepal","netherlands","netherlands antilles","new caledonia"
+        ,"new zealand","nicaragua","niger","nigeria","norway","oman","pakistan","palestine","panama","papua new guinea","paraguay","peru","philippines","poland","portugal"
+        ,"puerto rico","qatar","reunion","romania","russia","rwanda","saint pierre; miquelon","samoa","san marino","satellite","saudi arabia","senegal","serbia","seychelles"
+        ,"sierra leone","singapore","slovakia","slovenia","south africa","south korea","spain","sri lanka","st kitts", "saint kitts", "nevis","st lucia", "st. lucia","saint lucia","st vincent", "st. vincent","st. lucia","sudan"
+        ,"suriname","swaziland","sweden","switzerland","syria","taiwan","tajikistan","tanzania","thailand","timor l'este","togo","tonga","trinidad; tobago","tunisia"
+        ,"turkey","turkmenistan","turks; caicos","uganda","ukraine","united arab emirates","united kingdom","united states","united states minor outlying islands","uruguay"
+        ,"uzbekistan","venezuela","vietnam","virgin islands (us)", "virgin islands","yemen","zambia","zimbabwe", "us", "uk", "uae"];
+        if(countries.indexOf(sample.toLowerCase()) == -1)
+            return false;
+        return true;
+    }
     // street: function(sample){
     // /* 
     //     Must contain atleast 1 alphabet
