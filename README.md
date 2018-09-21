@@ -1,6 +1,6 @@
 # input-validate
 
-Just when you are not using any type checking library/framework. There is are a couple of predefined day to day check-functions and a CUSTOM input test function to meet any of your random needs!
+A bunch of pure functions with regular expressions, for input validation purpose (when you are not using any type checking library/framework). There is are a couple of predefined day to day check-functions and a - flexible enough CUSTOM test function to meet any other random needs!
 
 ## INSTALL 
 
@@ -9,16 +9,16 @@ Just when you are not using any type checking library/framework. There is are a 
 ## HOW TO USE
   	var TEST = require('input-validate');
   
-  	if(TEST.strictNumbers(123)){
+  	if ( TEST.strictNumbers(123) ) {
       	console.log("It is a valid number.")
   	}
 
 ### [Codepen](https://codepen.io/Austin4Silvers/pen/ggPMoM?editors=1010)
 
 
-## QUICK CONTENT
-	
-	- Custom validation [ Check below to create custom rules ]
+## Table of CONTENT
+	- [isNumber](#isNumber)
+	<!-- - Custom validation [ Check below to create custom rules ]
 	- Alphabets ( with and without white spaces  )
 	- Numbers ( with and without white spaces  )
 	- Alphanumeric ( with and without white spaces  ) 
@@ -26,7 +26,7 @@ Just when you are not using any type checking library/framework. There is are a 
 	- Email
 	- Address components ( street, city, state, country )
 	- Credit card
-	- Many more
+	- Many more -->
 
 ## CUSTOM rule creation
 
@@ -75,16 +75,16 @@ The second parameter of the function `custom("",allow_rules)` is used to create 
 
 
 ## OTHER TESTS (Quick use)
-
+	<a name="isNumber"></a>
 	**isNumber** : function (input) {
 		// (typeof sample === "number") ? true : false;
 	} 
 
-	**strictNumbers**: function (input, [true|false]) {
+	**strictNumbers**: function (input, mode[true|false]) {
 		/*
 			parameter 1: input
-			parameter 2: (optional checkType), by default `TRUE` 
-			return true if input is valid NUMBER 
+			parameter 2: (optional checkType), by default `true` 
+			return boolean
 		*/
 	}
 
@@ -97,8 +97,12 @@ The second parameter of the function `custom("",allow_rules)` is used to create 
 	}
 	
 
-	**alphanumeric**: function(input){
-		// returns false if string contains anything other than ALPHABETS OR NUMBERS
+	**alphanumeric**: function(input, mode[true|false]){
+		/*
+			parameter 1: input
+			parameter 2: (optional strictMode), by default `false`;
+			return boolean
+		*/
 	}
 
     alphabets_spaces: function(input){
