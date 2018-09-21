@@ -18,6 +18,7 @@ A bunch of pure functions with regular expressions, for input validation purpose
 
 ## Table of CONTENT
 - [isNumber](#isNumber)
+- [strictNumbers](#strictNumbers)
 <!-- - Custom validation [ Check below to create custom rules ]
 - Alphabets ( with and without white spaces  )
 - Numbers ( with and without white spaces  )
@@ -77,10 +78,14 @@ The second parameter of the function `custom("",allow_rules)` is used to create 
 ## OTHER TESTS (Quick use)
 
 <a name="isNumber"></a>**isNumber(input)** checks if input is a valid number uses `typeof`
+
+
 	if ( TEST.isNumber(123) ) {
       	console.log("It is a valid number.")
   	}
 
+
+<a name="strictNumbers"></a>**strictNumbers(input, true by default)** checks if input has valid numbers
 
 	**strictNumbers**: function (input, mode[true|false]) {
 		/*
