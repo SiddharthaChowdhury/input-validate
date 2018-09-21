@@ -154,7 +154,7 @@ The second parameter of the function `custom("",allow_rules)` is used to create 
     √ should return FALSE alphanumeric('123@abc')
 
 
-<a name="quickPassword"/>quickPassword(input): A quick password check with some ground rules:  [{Table of Content}](#toc)
+<a name="quickPassword"/>**quickPassword(input)** A quick password check with some ground rules:  [{Table of Content}](#toc)
 
 	--- RULE ---
 	1. Must contain at least 1 number and 1 letter
