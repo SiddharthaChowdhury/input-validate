@@ -75,10 +75,12 @@ The second parameter of the function `custom("",allow_rules)` is used to create 
 
 
 ## OTHER TESTS (Quick use)
-	<a name="isNumber"></a>
-	**isNumber** : function (input) {
-		// (typeof sample === "number") ? true : false;
-	} 
+
+<a name="isNumber"></a>**isNumber(input)** checks if input is a valid number uses `typeof`
+	if ( TEST.isNumber(123) ) {
+      	console.log("It is a valid number.")
+  	}
+
 
 	**strictNumbers**: function (input, mode[true|false]) {
 		/*
