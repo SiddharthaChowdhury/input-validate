@@ -98,7 +98,7 @@ The second parameter of the function `custom("",allow_rules)` is used to create 
     √ should return FALSE - strictNumbers(null)
 	
 
-<a name="isString"></a>**isString(input)** checks if input is a valid string uses `typeof`
+<a name="isString"></a>**isString(input)** Checks if input is a valid string uses `typeof`
 
 	// --- usage ---
 	if ( TEST.isString("abc") ) {
@@ -106,7 +106,7 @@ The second parameter of the function `custom("",allow_rules)` is used to create 
   	}
 
 
-<a name="strictAlphabets"/>**strictAlphabets(input) checks if input contains only alphabets
+<a name="strictAlphabets"/>**strictAlphabets(input)** Checks if input contains only alphabets
 
 	// --- usage ---
 	if ( TEST.strictAlphabets("abc") ) {
@@ -124,7 +124,7 @@ The second parameter of the function `custom("",allow_rules)` is used to create 
     √ should return FALSE - strictAlphabets(null)
 
 
-<a name="alphanumeric"/> This function takes 2 arguments. first one is input and second one is "strictMode" as boolean. By default `strictMode` = `false`, is that case the validator returns true if the input contains either alphabets or number or both. But when you make the `strictMode` = `true`, it checks for -the input must contain alphabets and numbers. Note -no space or symbols are tolarated.
+<a name="alphanumeric"/> **alphanumeric(input, false by default)** This function takes 2 arguments. first one is input and second one is "strictMode" as boolean. By default `strictMode` = `false`, is that case the validator returns true if the input contains either alphabets or number or both. But when you make the `strictMode` = `true`, it checks for -the input must contain alphabets and numbers. Note -no space or symbols are tolarated.
 
 	--- usage ---
 	if ( TEST.alphanumeric("abc") ) {
