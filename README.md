@@ -17,8 +17,9 @@ A bunch of pure functions with regular expressions, for input validation purpose
 
 
 ## Table of CONTENT
-- [isNumber](#isNumber)
-- [strictNumbers](#strictNumbers)
+- [isNumber ()](#isNumber)
+- [strictNumbers ()](#strictNumbers)
+- [isString ()](#isString)
 <!-- - Custom validation [ Check below to create custom rules ]
 - Alphabets ( with and without white spaces  )
 - Numbers ( with and without white spaces  )
@@ -80,6 +81,7 @@ The second parameter of the function `custom("",allow_rules)` is used to create 
 <a name="isNumber"></a>**isNumber(input)** checks if input is a valid number uses `typeof`
 
 
+	// --- usage ---
 	if ( TEST.isNumber(123) ) {
       	console.log("It is a valid number.")
   	}
@@ -87,17 +89,32 @@ The second parameter of the function `custom("",allow_rules)` is used to create 
 
 <a name="strictNumbers"></a>**strictNumbers(input, true by default)** checks if input has valid numbers
 
-	**strictNumbers**: function (input, mode[true|false]) {
-		/*
-			parameter 1: input
-			parameter 2: (optional checkType), by default `true` 
-			return boolean
-		*/
-	}
+	// --- usage ---
+	if ( TEST.strictNumbers(123) ) {
+      	console.log("It is a valid number.")
+  	}
 
-	**isString**: function (input) {
-		// (typeof sample === "string") ? true : false;
-	}
+	// --- tests ---
+	√ should return FALSE - strictNumbers('1234')
+    √ should return TRUE - strictNumbers('1234', checkType = false)
+    √ should return TRUE - strictNumbers(1234)
+    √ should return TRUE - strictNumbers(1234, checkType = false)
+    √ should return FALSE - strictNumbers(`123`)
+    √ should return TRUE - strictNumbers(`123`, checkType = false)
+    √ should return FALSE - strictNumbers()
+    √ should return FALSE - strictNumbers(null)
+	
+
+<a name="isString"></a>**isString(input)** checks if input is a valid string uses `typeof`
+
+	// --- usage ---
+	if ( TEST.isString("abc") ) {
+      	console.log("It is a valid number.")
+  	}
+
+
+
+some other stuff (WIP)
 
 	**strictAlphabets**: function (input) {
 		// return true if input is ALPHABET/s (only)
