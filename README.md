@@ -15,8 +15,8 @@ A bunch of pure functions with regular expressions, for input validation purpose
       	console.log("It is a valid number.")
   	}
 
-
-## Use table of CONTENT to navigate through the page
+<a name="toc"/>
+## Use Table of CONTENT to navigate through the page
 - [isNumber( )](#isNumber)
 - [strictNumbers( )](#strictNumbers)
 - [isString( )](#isString)
@@ -75,7 +75,7 @@ The second parameter of the function `custom("",allow_rules)` is used to create 
 
 ## OTHER TESTS (Quick use)
 
-<a name="isNumber"></a>**isNumber(input)** checks if input is a valid number uses `typeof`
+<a name="isNumber"></a>**isNumber(input)** checks if input is a valid number uses `typeof` [{Table of Content}](#toc)
 
 	// --- usage ---
 	if ( TEST.isNumber(123) ) {
@@ -83,7 +83,7 @@ The second parameter of the function `custom("",allow_rules)` is used to create 
   	}
 
 
-<a name="strictNumbers"></a>**strictNumbers(input, true by default)** checks if input has valid numbers
+<a name="strictNumbers"></a>**strictNumbers(input, true by default)** checks if input has valid numbers  [{Table of Content}](#toc)
 
 	// --- usage ---
 	if ( TEST.strictNumbers(123) ) {
@@ -101,7 +101,7 @@ The second parameter of the function `custom("",allow_rules)` is used to create 
     √ should return FALSE - strictNumbers(null)
 	
 
-<a name="isString"></a>**isString(input)** Checks if input is a valid string uses `typeof`
+<a name="isString"></a>**isString(input)** Checks if input is a valid string uses `typeof` [{Table of Content}](#toc)
 
 	// --- usage ---
 	if ( TEST.isString("abc") ) {
@@ -109,7 +109,7 @@ The second parameter of the function `custom("",allow_rules)` is used to create 
   	}
 
 
-<a name="strictAlphabets"/>**strictAlphabets(input)** Checks if input contains only alphabets
+<a name="strictAlphabets"/>**strictAlphabets(input)** Checks if input contains only alphabets [{Table of Content}](#toc)
 
 	// --- usage ---
 	if ( TEST.strictAlphabets("abc") ) {
@@ -127,7 +127,7 @@ The second parameter of the function `custom("",allow_rules)` is used to create 
     √ should return FALSE - strictAlphabets(null)
 
 
-<a name="alphanumeric"/> **alphanumeric(input, false by default)** This function takes 2 arguments. first one is input and second one is "strictMode" as boolean. By default `strictMode` = `false`, is that case the validator returns true if the input contains either alphabets or number or both. But when you make the `strictMode` = `true`, it checks for -the input must contain alphabets and numbers. Note -no space or symbols are tolarated.
+<a name="alphanumeric"/> **alphanumeric(input, false by default)** This function takes 2 arguments. first one is input and second one is "strictMode" as boolean. By default `strictMode` = `false`, is that case the validator returns true if the input contains either alphabets or number or both. But when you make the `strictMode` = `true`, it checks for -the input must contain alphabets and numbers. Note -no space or symbols are tolarated.  [{Table of Content}](#toc)
 
 	--- usage ---
 	if ( TEST.alphanumeric("abc") ) {
@@ -153,12 +153,13 @@ The second parameter of the function `custom("",allow_rules)` is used to create 
     √ should return FALSE alphanumeric('123@abc')
 
 
-<a name="quickPassword"/>quickPassword(input): A quick password check with some ground rules:
+<a name="quickPassword"/>quickPassword(input): A quick password check with some ground rules:  [{Table of Content}](#toc)
 
-1. Must contain at least 1 number and 1 letter
-2. Must have atleast 8 characters
-3. May contain blank space
-4. May contain any of these characters: ._@#$%
+	--- RULE ---
+	1. Must contain at least 1 number and 1 letter
+	2. Must have atleast 8 characters
+	3. May contain blank space
+	4. May contain any of these characters: ._@#$% 
 
 	--- usage ---
 	if ( TEST.quickPassword("123abc_XYZ") ) {
@@ -175,7 +176,7 @@ The second parameter of the function `custom("",allow_rules)` is used to create 
     √ should return TRUE quickPassword('1234abcXYZ')
 
 
-<a name="isEmail"/> **isEmail(input)** Checks for valid email address 
+<a name="isEmail"/> **isEmail(input)** Checks for valid email address  [{Table of Content}](#toc)
 
 	--- usage ---
 	if ( TEST.isEmail("valid@email.addr") ) {
@@ -193,7 +194,7 @@ The second parameter of the function `custom("",allow_rules)` is used to create 
     √ should return FALSE isEmail(' valid@email.addrress')
 
 
-<a name="isPersonName"/> **isPersonName(input)** Checks for a possible valid full name of a person including salutation checks like ["Mr", "Master", "Sir", "Dr", "Miss", "Ms", "Mrs", "Prof", "Rev", "Capt", "Maj", "Dj", "Pvt" ]
+<a name="isPersonName"/> **isPersonName(input)** Checks for a possible valid full name of a person including salutation checks like ["Mr", "Master", "Sir", "Dr", "Miss", "Ms", "Mrs", "Prof", "Rev", "Capt", "Maj", "Dj", "Pvt" ] [{Table of Content}](#toc)
 
 	--- usage ---
 	if ( TEST.isPersonName("John Doe") ) {
@@ -212,7 +213,7 @@ The second parameter of the function `custom("",allow_rules)` is used to create 
     √ should return FALSE isPersonName('John_Doe')
 
 
-<a name="isCountry"/> **isCountry(input)** Checks if given input is a valid country name. (Checks trough a list of more than 210 countries)
+<a name="isCountry"/> **isCountry(input)** Checks if given input is a valid country name. (Checks trough a list of more than 210 countries) [{Table of Content}](#toc)
 
 	--- usage ---
 	if ( TEST.isCountry("India") ) {
@@ -230,7 +231,7 @@ The second parameter of the function `custom("",allow_rules)` is used to create 
 
 
 
-### Some other stuff (refactor - WIP)
+### Some other stuff (refactor - WIP)  [{Table of Content}](#toc)
 
     alphabets_spaces: function(input){
     	/* 
@@ -254,22 +255,6 @@ The second parameter of the function `custom("",allow_rules)` is used to create 
       	// returns false if string contains anything other than ALPHABETS or NUMBERS with SPACES
     }
 
-	street: function(input){
-		/* 
-		    Must contain atleast 1 alphabet
-		    May contain alphabets and numbers 
-		    May contain special symbols such as .,#/_-
-		    May contain blank spaces
-		*/
-	}
-
-	city_state_country: function(input) {
-		/* 
-	        Must contain atleast 1 alphabet
-	        Must not contain numbers or special symbols
-	        May contain blank spaces
-	    */
-	}
 
 	credit_card_type: function(input){
 	    /* 
