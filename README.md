@@ -26,9 +26,9 @@ A bunch of pure functions with regular expressions, for input validation purpose
 - [quickPassword( )](#quickPassword)
 - [isEmail( )](#isEmail)
 - [isPersonName( )](#isPersonName)
-- [isCountry()](#isCountry)
-- [customOr() : A flexible function to implements custom test with 'OR' condition](#customOr)
-- [customAnd(): A flexible function to implements custom test with 'AND' condition](#customAnd) 
+- [isCountry( )](#isCountry)
+- [customOr( ) : A flexible function to implements custom test with 'OR' condition](#customOr)
+- [customAnd( ): A flexible function to implements custom test with 'AND' condition](#customAnd) 
 
 
 ## QUICK TESTS
@@ -273,11 +273,11 @@ When none is passed - numbers: '0-9'(by default) is considered
 It is same as `customOr()` defined [above](#customOr). The only difference between these two custom is - 
 
 - In case of `customOr()` :  **MAY** contain alphabets or number or both.
-- In case of `customAnd()` :  **MUST** contain atleast 1 alphabets or atleast 1 number or atleast 1 of bothalphabets and numbers (depending on rules defined)
+- In case of `customAnd()` :  **MUST** contain atleast 1 alphabets or atleast 1 number or atleast 1 of both - alphabets and numbers (depending on rules defined)
 
 
 
-### Some other stuff (refactor - WIP)  [{Table of Content}](#toc)
+<!-- ### Some other stuff (refactor - WIP)  [{Table of Content}](#toc)
 
     alphabets_spaces: function(input){
     	/* 
@@ -357,4 +357,4 @@ It is same as `customOr()` defined [above](#customOr). The only difference betwe
 		*/
 		valid returns TRUE
 		else FALSE
-	}
+	} -->
