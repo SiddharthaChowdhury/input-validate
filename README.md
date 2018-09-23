@@ -279,7 +279,7 @@ It is same as `customOr()` defined [above](#customOr). The only difference betwe
 
 <a name="es6Support"/>
 
-###ES6 Import
+### ES6 Import
 
 If your application supports ES6 the you can also import specific tests from `es6` directory like this:
 
