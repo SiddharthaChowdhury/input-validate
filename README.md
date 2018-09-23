@@ -273,7 +273,7 @@ When none is passed - numbers: '0-9'(by default) is considered
 It is same as `customOr()` defined [above](#customOr). The only difference between these two custom is - 
 
 - In case of `customOr()` :  **MAY** contain alphabets or number or both.
-- In case of `customAnd()` :  **MUST** contain atleast 1 alphabets or atleast 1 number or both (depending on rules defined)
+- In case of `customAnd()` :  **MUST** contain atleast 1 alphabets or atleast 1 number or atleast 1 of bothalphabets and numbers (depending on rules defined)
 
 
 
