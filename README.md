@@ -29,6 +29,7 @@ A bunch of pure functions with regular expressions, for input validation purpose
 - [isCountry( )](#isCountry)
 - [customOr( ) : A flexible function to implements custom test with 'OR' condition](#customOr)
 - [customAnd( ): A flexible function to implements custom test with 'AND' condition](#customAnd) 
+- [ES6 Support](#es6Support)
 
 
 ## QUICK TESTS
@@ -276,6 +277,15 @@ It is same as `customOr()` defined [above](#customOr). The only difference betwe
 - In case of `customAnd()` :  **MUST** contain atleast 1 alphabets or atleast 1 number or atleast 1 of both - alphabets and numbers (depending on rules defined)
 
 
+<a name="es6Support"/>
+
+If your application supports ES6 the you can also import specific tests from `es6` directory like this:
+
+	import {isString, strictNumbers, customOr, } from 'input-validate/es6';
+
+	if( isString("234fff") ) {
+		// do something
+	}
 
 <!-- ### Some other stuff (refactor - WIP)  [{Table of Content}](#toc)
 
