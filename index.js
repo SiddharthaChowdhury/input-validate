@@ -5,14 +5,14 @@ module.exports = {
 
     strictNumbers: function(sample, _type = true){
         if(_type && typeof sample === "number"){
-            if (typeof sample === undefined) return false;
+            if (!sample) return false;
             return (sample) ? /^([0-9]+)$/.test(sample) : false;
         }
         if(_type && typeof sample !== "number"){
             return false;
         }
         if(!_type){
-            if (typeof sample === undefined) return false;
+            if (sample === undefined) return false;
             return (sample) ? /^([0-9]+)$/.test(sample) : false;
         }   
     },
@@ -27,7 +27,7 @@ module.exports = {
     },
 
     isAlphanumeric: function(sample, strict = false){
-        if (typeof sample === undefined) return false;
+        if (!sample) return false;
         if(strict){
             return sample ? /^(?=.*\d)(?=.*[A-Za-z])[0-9A-Za-z]$/.test(sample) : false;
         }
@@ -42,13 +42,13 @@ module.exports = {
         May contain any of these characters: ._@#$%
         Must have atleast 8 characters
     */
-        if (typeof sample === undefined) return false;
+        if (!sample) return false;
         return (sample) ? /^(?=.*\d)(?=.*[A-Za-z])[0-9A-Za-z ._@#$%]{8,}$/.test(sample) : false;
     },
 
     isEmail: function(sample){
         /*  Pursuit of a valid email address  */
-        if (typeof sample === undefined || sample.length < 6) return false;
+        if (!sample || sample.length < 6) return false;
         return (sample) ? /^[A-Za-z0-9._-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4}$/.test(sample) : false;
     },
 
@@ -58,7 +58,7 @@ module.exports = {
         May contain blank spaces
         May contain "." or "," symbols only
     */  
-        if (typeof sample === undefined || sample.length < 3) return false;
+        if (!sample || sample.length < 3) return false;
         const salutations = ["mr", "master", "sir", "dr", "miss", "ms", "mrs", "prof", "rev", "capt", "maj", "dj", "pvt" ];
         var fullName = sample.replace(",", ".").split('.');
 
@@ -91,6 +91,7 @@ module.exports = {
         return true;
     },
 
+    // MAY contain alphabets or number or both
     customOr: function(sample, changes, regexFlag){
         var _default = {
             alphabets: true,
@@ -104,7 +105,6 @@ module.exports = {
         var config = Object.assign(_default, changes);
 
         var parts = [];
-    
         // Handling alphabets
         if(typeof config.alphabets === "boolean" && config.alphabets == true){
             parts.push('a-zA-Z');
@@ -172,8 +172,104 @@ module.exports = {
         var pattern = new RegExp(regex,regexFlag);
         return pattern.test(sample);
     },
+    
+    // MUST contain alphabets or number or both
+    customAnd: function(sample, changes, regexFlag){
+        var _default = {
+            alphabets: true,
+            numbers: '0-9',
+            spaces: false,
+            symbols: '', 
+            minlength: '',
+            maxlength: '',
+        }
 
+        var config = Object.assign(_default, changes);
+       
+        var parts = [];
+        var musts = [];
+        // Handling alphabets
+        if(typeof config.alphabets === "boolean" && config.alphabets == true){
+            parts.push('a-zA-Z');
+            musts.push('(?=.*[A-Za-z])');
+        }
+        if(typeof config.alphabets === "object"){
+            if(config.alphabets.lowercase && config.alphabets.uppercase){
+                parts.push('a-zA-Z');
+                musts.push('(?=.*[A-Za-z])');
+            }
+            else if(!config.alphabets.lowercase && config.alphabets.uppercase){
+                parts.push('A-Z');
+                musts.push('(?=.*[A-Z])');
+            }
+            else if(config.alphabets.lowercase && !config.alphabets.uppercase){
+                parts.push('a-z');
+                musts.push('(?=.*[a-z])');
+            }
+        } 
 
+        // Handling Numbers
+        if(typeof config.numbers === "string"){
+            var nms = config.numbers.split("-");
+            if(nms.length != 2)
+                return false;
+            if(/^([0-9]+)$/.test(nms[0]) == false || /^([0-9]+)$/.test(nms[1]) == false)
+                return false;
+            if(nms[0] > nms[1])
+                return false;
+            
+            parts.push(config.numbers);
+            musts.push('(?=.*['+nms[0]+'-'+nms[1]+'])');
+        }
+        if(typeof config.numbers === "boolean" && config.numbers == true) {
+            parts.push('0-9');
+            musts.push('(?=.*\d)')
+        }
+
+        // Finalize And/Must part of regex
+        var mandt = '';
+        for(var i =0; i < musts.length; i++) {
+            mandt += musts[i];
+        }
+
+        // Handling spaces
+        if(config.spaces == true){
+            parts.push('\\s');
+        }
+        
+        // Handling symbols
+        if(config.symbols != ''){
+            
+            config.symbols = config.symbols.replace('"', '\\"'); 
+            config.symbols = config.symbols.replace("'", "\\'");
+            config.symbols = config.symbols.replace('/', '\\/');
+                
+            parts.push(config.symbols)	
+        }
+
+		// Handling String lengths. i.e. min and max
+		var regex = '';
+		if(!isNaN(parseInt(config.minlength)) || !isNaN(parseInt(config.maxlength))){
+            var length = '';
+			length += config.minlength && !isNaN(parseInt(config.minlength )) ? '{'+parseInt(config.minlength) : '{1';
+			length += config.maxlength && !isNaN(parseInt(config.maxlength )) ? ','+parseInt(config.maxlength)+'}' : ',}';
+
+            var toMatch = '';
+            for(var i = 0; i < parts.length; i++) {
+                toMatch += parts[i]
+            }
+            regex = '^'+mandt+'['+ toMatch +']'+length+'$';
+		} else {
+			var toMatch = '';
+            for(var i = 0; i < parts.length; i++) {
+                toMatch += parts[i]
+            }
+            regex = '^'+mandt+'['+ toMatch +']{1,}$';
+		}
+
+        var pattern = new RegExp(regex,regexFlag);
+        return pattern.test(sample);
+    },
 
     // credit_card_type: function(sample){
     //     var cardWorld = {

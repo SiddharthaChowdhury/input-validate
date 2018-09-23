@@ -27,7 +27,8 @@ A bunch of pure functions with regular expressions, for input validation purpose
 - [isEmail( )](#isEmail)
 - [isPersonName( )](#isPersonName)
 - [isCountry()](#isCountry)
-- [customOr() : A flexible function to implement custom test with 'OR' condition](#customOr)
+- [customOr() : A flexible function to implements custom test with 'OR' condition](#customOr)
+- [customAnd(): A flexible function to implements custom test with 'AND' condition](#customAnd) 
 
 
 ## QUICK TESTS
@@ -263,6 +264,17 @@ When none is passed - numbers: '0-9'(by default) is considered
     √ should return TRUE - customOr('12345', {minlength: 4}) - symbols not configured
     √ should return FALSE - customOr('123456', {minlength: 4, maxlength: 5}) - symbols not configured
     √ should return TRUE - customOr('123456', {minlength: 4, maxlength: 5}) - symbols not configured
+
+
+<a name="customAnd"/>
+
+## customAnd()
+
+It is same as `customAnd()` defined [above](#customOr). The only difference between these two custom is - 
+
+- In case of `customOr()` :  **MAY** contain alphabets or number or both.
+- In case of `customAnd()` :  **MUST** contain atleast 1 alphabets or atleast 1 number or both (depending on rules defined)
+
 
 
 ### Some other stuff (refactor - WIP)  [{Table of Content}](#toc)
