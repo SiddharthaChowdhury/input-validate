@@ -289,6 +289,8 @@ If your application supports ES6 then you can also import specific tests from `e
 		// do something
 	}
 
+[{Table of Content}](#toc)
+
 <!-- ### Some other stuff (refactor - WIP)  [{Table of Content}](#toc)
 
     alphabets_spaces: function(input){
