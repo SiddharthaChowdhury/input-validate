@@ -26,7 +26,7 @@ module.exports = {
         return (sample) ? /^([a-zA-Z]+)$/.test(sample) : false;     
     },
 
-    alphanumeric: function(sample, strict = false){
+    isAlphanumeric: function(sample, strict = false){
         if (typeof sample === undefined) return false;
         if(strict){
             return sample ? /^(?=.*\d)(?=.*[A-Za-z])[0-9A-Za-z]$/.test(sample) : false;
@@ -89,34 +89,91 @@ module.exports = {
         if(countries.indexOf(sample.toLowerCase()) == -1)
             return false;
         return true;
-    }
-    // street: function(sample){
-    // /* 
-    //     Must contain atleast 1 alphabet
-    //     May contain alphabets and numbers 
-    //     May contain special symbols such as .,#/_-
-    //     May contain blank spaces
-    // */
-    //     return (sample) ? /^(?=.*[A-Za-z])[A-Za-z0-9 .,#/_-]{3,50}$/.test(sample) : false;
-    // },
+    },
 
-    // city_state_country: function(sample) {
-    // /* 
-    //     Must contain atleast 1 alphabet
-    //     Must not contain numbers 
-    //     May contain blank spaces
-    // */
-    //     return (sample) ? /^(?=.*[A-Za-z])[A-Za-z ]{3,50}$/.test(sample) : false;
-    // },
+    customOr: function(sample, changes, regexFlag){
+        var _default = {
+            alphabets: true,
+            numbers: '0-9',
+            spaces: false,
+            symbols: '', 
+            minlength: '',
+            maxlength: '',
+        }
 
-    // acct_number: function(sample) {
-    // /* 
-    //     Must contain atleast 1 alphabet
-    //     Must contain atleast 1 number
-    //     Must not contain any special symbol or blank space
-    // */
-    //     return (sample) ? /^(?=.*\d)(?=.*[A-Za-z])[0-9A-Za-z]{9,18}$/.test(sample) : false;
-    // },
+        var config = Object.assign(_default, changes);
+
+        var parts = [];
+    
+        // Handling alphabets
+        if(typeof config.alphabets === "boolean" && config.alphabets == true){
+            parts.push('a-zA-Z');
+        }
+        if(typeof config.alphabets === "object"){
+            if(config.alphabets.lowercase && config.alphabets.lowercase == true){
+                parts.push('a-z');
+            }
+            if(config.alphabets.uppercase && config.alphabets.uppercase == true){
+                parts.push('A-Z');
+            }
+        } 
+
+        // Handling Numbers
+        if(typeof config.numbers === "string"){
+            var nms = config.numbers.split("-");
+            if(nms.length != 2)
+                return false;
+            if(/^([0-9]+)$/.test(nms[0]) == false || /^([0-9]+)$/.test(nms[1]) == false)
+                return false;
+            if(nms[0] > nms[1])
+                return false;
+            
+            parts.push(config.numbers);
+        }
+        if(typeof config.numbers === "boolean" && config.numbers == true) {
+            parts.push('0-9');
+        }
+
+        // Handling spaces
+        if(config.spaces == true){
+            parts.push('\\s');
+        }
+        
+        // Handling symbols
+        if(config.symbols != ''){
+            
+            config.symbols = config.symbols.replace('"', '\\"'); 
+            config.symbols = config.symbols.replace("'", "\\'");
+            config.symbols = config.symbols.replace('/', '\\/');
+                
+            parts.push(config.symbols)	
+        }
+		// Handling String lengths. i.e. min and max
+		var length = '';
+		var regex = '';
+		
+		if(!isNaN(parseInt(config.minlength)) || !isNaN(parseInt(config.maxlength))){
+			length += config.minlength && !isNaN(parseInt(config.minlength )) ? '{'+parseInt(config.minlength) : '{ ';
+			length += config.maxlength && !isNaN(parseInt(config.maxlength )) ? ','+parseInt(config.maxlength)+'}' : ',}';
+				
+			var x = '';
+            for(var i = 0; i < parts.length; i++){
+                x += parts[i]
+            }
+            regex = '^['+ x +']'+length+'$';
+		} else {
+			var x = '';
+            for(var i = 0; i < parts.length; i++){
+                x += parts[i]
+            }
+            regex = '^(['+ x +']+)'+length+'$';
+		}
+
+        var pattern = new RegExp(regex,regexFlag);
+        return pattern.test(sample);
+    },
+
+
 
     // credit_card_type: function(sample){
     //     var cardWorld = {
@@ -219,78 +276,4 @@ module.exports = {
     //     return (sample) ? /^([a-zA-Z0-9\s]+)$/.test(sample) : false;
     // },
 
-    // custom: function(sample, flags = {}, regexFlag = ""){
-    //     /*
-    //     allows = { // Optional
-    //         alphabets: {
-    //            uppercase: true, // default
-    //            lowercase: true  // default
-    //         },
-    //         numbers: {
-    //            range: '0-9' // default
-    //         },
-    //         spaces: true,    // default
-    //         symbols: '-_,.', // default, exapmle: '-_,' 
-    //         str_length: {
-    //             min: 1,  // default
-    //             max: ""  // default
-    //         } 
-    //     }
-
-    //     regexFlag: Uses validation uses RegExp. this is the flag of the function: new RegExp('pattern', regexFlag); // Optional
-    //     */
-    //     var alpha = "", //"a-zA-Z",
-    //         nums = "", //"0-9",
-    //         symbols = "", //"-_,.",
-    //         spaces = "",
-    //         minlngth = 1,
-    //         maxlngth = "";
-    //     if(flags.str_length){
-    //        if(flags.str_length.min)
-    //           minlngth = parseInt(flags.str_length.min);
-    //        if(flags.str_length.max)
-    //           maxlngth = parseInt(flags.str_length.max);
-    //     }
-      
-    //     if(flags.alphabets){
-    //        if(!flags.alphabets.lowercase)
-    //           alpha += '';
-    //        else
-    //           alpha += 'a-z';
-    //        if(!flags.alphabets.uppercase)
-    //           alpha += '';
-    //        else
-    //           alpha += 'A-Z'
-    //     }else{
-    //         if(flags.alphabets == false)
-    //             alpha = '';
-    //         else
-    //             alpha = 'a-zA-Z'
-    //     }
-      
-    //     if( flags.numbers ){
-    //         if(flags.numbers.range)
-    //           nums = flags.numbers.range
-    //     }else{
-    //         if(flags.numbers === false)
-    //             nums = "";
-    //         else
-    //             nums = '0-9';
-    //     }
-      
-    //     if( flags.spaces === undefined || flags.spaces == true ){
-    //        spaces = " ";
-    //     }else{
-    //        spaces = "";
-    //     }
-      
-    //     if(flags.symbols)
-    //       symbols = flags.symbols.toString();
-    //     else
-    //       symbols = ""
-
-    //     var str = '^['+alpha+nums+spaces+symbols+']{'+minlngth+','+maxlngth+'}$'
-    //     var pattern = new RegExp(str,regexFlag)
-    //     return pattern.test(sample);
-    // }
 };

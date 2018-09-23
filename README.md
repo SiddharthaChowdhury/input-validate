@@ -27,51 +27,7 @@ A bunch of pure functions with regular expressions, for input validation purpose
 - [isEmail( )](#isEmail)
 - [isPersonName( )](#isPersonName)
 - [isCountry()](#isCountry)
-
-## CUSTOM rule creation
-
-	custom: function(input, allow_rules, flag){
-		//Implementation
-	}
-
-### Parameters of custom validation
-
-	1. `input`: (Required) `String`. Is the input to test against the `allow_rules` 
-	2. `allow_rules`: (Optional) `Object`. Validation configuration
-	3. `flag`: (Optional) `String`. This method uses [RegExp](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/RegExp) to validate inputs. This parameter is the flag of the function. : new RegExp('-----', `flag`)
-
-### Create CUSTOM Rule
-   
-The second parameter of the function `custom("",allow_rules)` is used to create custom validation.
-	
-	allow_rules = { 
-        alphabets: {            // Pass Boolean false if alphabets are not allowed
-           uppercase: Boolean, 	// default true 
-           lowercase: Boolean  	// default true
-        },
-        numbers: {              // Pass Boolean false if numbers are not allowed
-           range: String       	// default "0-9"
-        },
-        spaces: Boolean,   		// default true
-        symbols: String, 		// default "", exapmle: '-_,' 
-        str_length: {           // Object 
-            min: Number,  		// default 1
-            max: Number  		// default ""
-        } 
-    }
-
-### Custom rule Example: 
-    
-    var TEST 	= require('input-validate');
-    var str 	= "sample @123";
-    var rule 	= {spaces: false, symbols: "$#@"}
-    var result 	= TEST.custom(str, rule); // False 
-    
-    Whats happening here is
-    1. We want to validate the string- "sample @123"
-    2. Create a rule. The string should not contain in blank_space or any special symbol other than "$#@" these.
-    3. Execute the TEST. Validate "str" against the "rule".
-    4. Value of "result" is false as {spaces: false .. } and there is a space in str
+- [customOr() : A flexible function to implement custom test with 'OR' condition](#customOr)
 
 
 ## QUICK TESTS
@@ -230,6 +186,83 @@ The second parameter of the function `custom("",allow_rules)` is used to create 
     √ should return TRUE isCountry('US')
     √ should return TRUE isCountry('united states')
 
+
+<a name="customOr"/>
+
+
+## CUSTOM rule creation
+
+	customOr: function(input, {rules}, flag){
+		//Implementation
+	}
+
+### Parameters of custom validation
+
+	1. `input`: (Required) `String`. Is the input to test against the `rules` 
+	2. `rules`: (Optional) `Object`. Validation configuration
+	3. `flag`: (Optional) `String`. This method uses [RegExp](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/RegExp) to validate inputs. This parameter is the flag of the function. : new RegExp('-----', `flag`)
+
+### CUSTOM Rule
+   
+The second parameter of the function `customOr("",allow_rules)` is used to create custom validation.
+	
+	rules = {
+		alphabets: true,
+		numbers: '0-9',
+		spaces: false,
+		symbols: '', 
+		minlength: '',
+		maxlength: '',
+	};
+
+
+**alphabets**: can be boolean or Object.
+When boolean: true - means, it will consider upper & lower case alphabets.
+When object: { uppercase: true (will enable uppercase), lowercase: true (will enable lowercase alphabets) }
+When none is passed - alphabets: true (by default) is considered.	
+
+**numbers**: can be string range or boolean
+When boolean: true - means, it will consider range from 0 to 9
+When string: Should be valid range in format- "[min]-[max]" line "0-9"
+When none is passed - numbers: '0-9'(by default) is considered
+
+**spaces**: must be passed as boolean, by default its false. i.e no spca is tolatated.
+
+**symbols**: should be passed as string like '.-_'
+
+**minlength and maxlength**: a valid digit should be passed as number/string.
+
+### Custom rule Example: 
+    
+    var TEST 	= require('input-validate');
+    var str 	= "sample @123";
+    var rule 	= {spaces: true, symbols: "$#@"}
+    var result 	= TEST.customOr(str, rule); // False 
+    
+    Whats happening here is
+    1. We want to validate the string "str" = "sample @123".
+    2. Create a "rule" = {spaces: true, symbols: "$#@"}. The string "str" may contain blank space and no special symbol other than "$#@" these.
+    3. Execute the TEST. Validate "str" against the "rule".
+    4. Value of "result" is true;
+
+	--- test ---
+	Testing customOr configurable test function
+    √ should return FALSE - customOr('abcABC 123', {spaces: false})
+    √ should return TRUE - customOr('abcABC123', {spaces: false})
+    √ should return FALSE - customOr('abc123', { alphabets: false, space: false }) - No uppercase, no space
+    √ should return TRUE - customOr('abcABC123', { alphabets: true, space: false }) - No uppercase, no space
+    √ should return FALSE - customOr('abcABC123', { alphabets: { uppercase: false, }, space: false }) - No uppercase, no space
+    √ should return FALSE - customOr('abcABC123', { alphabets: { lowercase: false, }, space: false }) - No lowercase, no space
+    √ should return TRUE - customOr('ABC123', { alphabets: { lowercase: false, }, space: false }) - No lowercase, no space
+    √ should return TRUE - customOr('ABC123', { alphabets: { lowercase: false, }, space: false }) - No lowercase, no space
+    √ should return FALSE - customOr('ABC@123') - symbols not configured
+    √ should return TRUE - customOr('ABC@123', {symbols: '@'}) - symbols @ configured
+    √ should return TRUE - customOr('ABC@123', {symbols: '@$'}) - symbols @ and $ configured
+    √ should return TRUE - customOr('"ABC"123', {symbols: '"'}) - symbols " is configured, (use escape char or not)
+    √ should return FALSE - customOr('123', {minlength: 4}) - symbols not configured
+    √ should return TRUE - customOr('12345', {minlength: 4}) - symbols not configured
+    √ should return FALSE - customOr('123456', {minlength: 4, maxlength: 5}) - symbols not configured
+    √ should return TRUE - customOr('123456', {minlength: 4, maxlength: 5}) - symbols not configured
 
 
 ### Some other stuff (refactor - WIP)  [{Table of Content}](#toc)
