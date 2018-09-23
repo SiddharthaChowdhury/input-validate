@@ -281,7 +281,7 @@ It is same as `customOr()` defined [above](#customOr). The only difference betwe
 
 ### ES6 Import
 
-If your application supports ES6 the you can also import specific tests from `es6` directory like this:
+If your application supports ES6 then you can also import specific tests from `es6` directory like this:
 
 	import {isString, strictNumbers, customOr, } from 'input-validate/es6';
 
