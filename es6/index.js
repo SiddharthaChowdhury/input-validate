@@ -48,7 +48,7 @@ export const quickPassword = (sample) => {
 export const isEmail = (sample) => {
     /*  Pursuit of a valid email address  */
     if (!sample || sample.length < 6) return false;
-    return (sample) ? /^[A-Za-z0-9._-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4}$/.test(sample) : false;
+    return (sample) ? /^[A-Za-z0-9._-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/.test(sample) : false;
 }
 
 export const isPersonName = (sample) => {
